@@ -1,0 +1,25 @@
+class ModelGenome #Create class 
+
+#Require gems 
+
+	require 'rubygems'
+	require 'bio-samtools'
+	require 'bio'
+	require 'rinruby' #RinRuby is a Ruby library that integrates the R interpreter in Ruby, making R's statistical routines and graphics available within Ruby. 
+
+	# Make a list that models SNP positions
+	# Input 0: String of r code for the desired homozygous SNP distribution
+	# Input 1: String of r code for the desired heterozygous SNP distribution
+	# Output 0: List of homozygous SNPs
+	# Output 1: List of heterozygous SNPs
+	def self.get_snps(hm_code, ht_code) #create method. In the context of a class, self refers to the current class, which is simply an instance of the class Class. Defining a method on self creates a class method.
+		myr = RinRuby.new(echo = false)
+		myr.eval hm_code #.eval converts a variable in a method
+		myr.eval ht_code
+		hm = myr.pull 'hm'
+		ht = myr.pull 'ht'
+		myr.quit
+		return hm.map(&:abs).map(&:to_i).uniq, ht.map(&:abs).map(&:to_i).uniq # a few SNPs may be removed but doesn't affect distribution much
+	end
+
+	puts hm_code, ht_code 

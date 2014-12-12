@@ -4,7 +4,7 @@ require_relative 'lib/write_it'
 require_relative 'lib/reform_ratio'
 
 # make the directory to put data files into
-Dir.mkdir(File.join(Dir.home, "Desktop/fragmented_genome_with_snps/arabidopsis_datasets/#{ARGV[0]}"))
+Dir.mkdir(File.join(Dir.home, "fragmented_genome_with_snps/arabidopsis_datasets/#{ARGV[0]}"))
 
 # Create the lists of homozygous and heterozygous SNPs
 fasta_file = "TAIR10_chr4.fasta"
@@ -24,7 +24,7 @@ puts "Fragmenting arabidopsis_c4..."
 contig_size = 10000# 10-20kb
 frags = ModelGenome::get_frags(arabidopsis_c4, contig_size)
 puts "Done!"
-puts "Arabidopsis chr4 length: #{arabidopsis_c4.length} bases"
+puts "Arabidopsis chr4 length: #{arabidopsis_c4.length}/ kb"
 puts "Fragmented seq   length: #{frags.join.length} = close enough? You decide."
 puts "You have created #{frags.length} fragments of sizes #{contig_size}-#{contig_size*2}"
 

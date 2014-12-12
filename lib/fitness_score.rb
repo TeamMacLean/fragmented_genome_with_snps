@@ -39,9 +39,9 @@ class FitnessScore
 				ratios << count_ratio
 				x+=1
 			end
+			puts "....."
 			return ratios
 		end
-
 		# Input 0: Array of homozygous SNP positions
 		# Input 1: Array of heterozygous SNP positions
 		# Input 2: Number of breaks (divisions) in the genome to count the number of SNPs in
@@ -58,6 +58,7 @@ class FitnessScore
 			myr.quit
 			return fitness_score
 		end
+	
 	####################################################################################################
 
 	# Input: Array of homozygous snp positions
